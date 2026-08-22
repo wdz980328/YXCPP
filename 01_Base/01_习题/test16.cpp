@@ -8,26 +8,32 @@
  * 输出：输出每组数中的所有奇数的乘积，对于测试实例，输出一行
  */
 
+// 【知识点说明】
+// 本题考察一维数组的存储与遍历，以及奇数的判断和连乘求积。
+// 解题思路：先用数组 a 保存 n 个整数，再用 for 循环遍历，
+// 通过 a[i] % 2 判断是否为奇数（余 1 为奇数），是则累乘到 prod 中，
+// 最后输出乘积。
+
 #include <iostream>
 
 using namespace std;
 
-int a[1000];
+int a[1000];   // 全局数组，存放每组最多 1000 个整数
 
 int main()
 {
     int n;
-    while (cin >> n) {
+    while (cin >> n) {          // 反复读取每组数据的个数 n
         for (int i = 0; i<n; ++i) {
-            cin >> a[i];
+            cin >> a[i];        // 读入 n 个整数存入数组
         }
-        int prod = 1;
+        int prod = 1;           // 乘积初始化为 1（乘法单位元）
         for (int i = 0; i<n; ++i) {
-            if (a[i] %2) {
-                prod *= a[i];
+            if (a[i] %2) {      // 判断是否为奇数
+                prod *= a[i];   // 是奇数则累乘
             }
         }
-        cout << prod << endl;
+        cout << prod << endl;   // 输出所有奇数的乘积
     }
 
     return 0;

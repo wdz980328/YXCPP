@@ -7,35 +7,44 @@
 //输入：反复输入m 和 n ，以及 m×n的矩阵
 //输出：行号，列号 以及绝对值最大的数
 
+// 【知识点说明】
+// 本题考察二维数组的存储与遍历，以及“找最大绝对值及其下标”。
+// 解题思路：用 abs() 求每个元素的绝对值（需包含 <cmath>），
+// 用变量 max 记录当前最大绝对值，r、c 记录对应行、列下标；
+// 由于是按行优先、从左到右遍历，且只在“严格大于”时更新，
+// 自然满足了“相等时取行号小、列号小”的要求。
+// 最后输出行号、列号（注意下标从 0 开始，故加 1）和该元素本身。
+
 #include <iostream>
-#include <cmath>
+#include <cmath>       // 提供 abs 函数
 using namespace std;
 
-int a[1001][1001];
+int a[1001][1001];     // 二维数组，存放矩阵
 
 int main()
 {
     int m,n;
 
-    while (cin >> m >> n) {
-        int max = -1,r,c;
+    while (cin >> m >> n) {   // 反复读取矩阵的行数 m 和列数 n
+        int max = -1,r,c;     // max 记录最大绝对值，r、c 记录其行列下标
 
         for (int i = 0; i<m; ++i) {
             for (int j = 0; j<n; ++j) {
-                cin >> a[i][j];
+                cin >> a[i][j];   // 读入矩阵元素
             }
         }
 
         for (int i = 0; i<m; ++i) {
             for (int j = 0; j<n; ++j) {
-                int x = abs(a[i][j]);
-                if (x>max) {
+                int x = abs(a[i][j]); // 取元素的绝对值
+                if (x>max) {          // 严格大于才更新，保证相等时保留先遇到的
                     max = x;
-                    r = i;
-                    c = j;
+                    r = i;            // 记录行下标
+                    c = j;            // 记录列下标
                 }
             }
         }
+        // 下标从 0 开始，输出时加 1 得到 1 起始的行列号
         cout << (r+1) << ' ' << (c+1) << ' ' << a[r][c] << endl;
     }
 

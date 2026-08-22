@@ -1,18 +1,35 @@
 //
 // Created by wangd on 2026/7/19.
 //
+//                                      常量
+//
+// 【知识点说明】
+// 常量（constant）是指在程序运行过程中其值不可被改变的量。
+// C++ 中常用两种方式定义常量：
+//
+// 概念要点：
+// 1. 宏常量：#define 名称 值
+//    属于预处理指令，编译前由预处理器做简单的文本替换，不参与类型检查。
+// 2. const 常量：const 数据类型 名称 = 值;
+//    由编译器处理，具有数据类型、参与类型检查，比宏常量更安全、更规范。
+//
+// 注意事项：
+// 1. #define 定义的是宏，本质是文本替换，没有类型和明确作用域，容易产生歧义，
+//    因此 C++ 中更推荐用 const 定义常量。
+// 2. const 常量一旦定义，其值不能再被修改，否则编译报错。
+// 3. 习惯上常量名常用大写字母表示（本示例中的 x/y 仅为演示，未严格遵循该习惯）。
 
-#include <iostream>
+#include <iostream>      // 头文件：提供输入输出流
 
-#define x "ҹ���˾�д�㷨"
-#define y "Ӣ���㷨����"
-const int w = 7;
+#define x "夜深人静写算法"  // 宏常量 x（编译前文本替换，无类型）
+#define y "英雄算法联盟"    // 宏常量 y
+const int w = 7;         // const 常量 w，类型为 int，值为 7
 
-using namespace std;
+using namespace std;     // 使用标准命名空间
 
 int main()
 {
-    cout << x << endl << y << endl;
+    cout << x << endl << y << endl;  // 输出两个常量 x 和 y
 
-    return 0;
+    return 0;            // 程序正常结束
 }

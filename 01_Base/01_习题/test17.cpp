@@ -12,32 +12,40 @@
  */
 
 
+// 【知识点说明】
+// 本题考察数组的使用、区间内数的遍历，以及奇偶分类求和。
+// 解题思路：
+//   1. 若 m > n，先交换二者，保证区间为 [n, m]（从小到大）；
+//   2. 把区间内的连续整数依次存入数组 a；
+//   3. 遍历数组，偶数累加其平方到 sum1，奇数累加其立方到 sum2；
+//   4. 输出 sum1 和 sum2。
+
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-    int a[1234];
+    int a[1234];   // 数组，存放区间内的整数
     int n,m;
-    while (cin >> n >> m) {
-        if (n>m) {
+    while (cin >> n >> m) {     // 反复读取区间的两个端点
+        if (n>m) {              // 若 n>m，则交换，保证 n<=m
             int tmp = n; n=m; m = tmp;
         }
-        int cnt = m-n+1;
+        int cnt = m-n+1;        // 区间内整数的个数
         for (int i = n; i<= m; ++i) {
-            a[i-n] = i;
+            a[i-n] = i;         // 把 [n,m] 的整数依次存入数组（下标从 0 开始）
         }
-        int sum1 = 0, sum2 = 0;
+        int sum1 = 0, sum2 = 0; // sum1 存偶数平方和，sum2 存奇数立方和
         for (int i = 0; i<cnt; ++i) {
-            if (a[i] % 2 == 0) {
-                sum1 += a[i] * a[i];
+            if (a[i] % 2 == 0) {          // 偶数
+                sum1 += a[i] * a[i];      // 累加平方
             }
-            else {
-                sum2 += a[i] * a[i] * a[i];
+            else {                        // 奇数
+                sum2 += a[i] * a[i] * a[i]; // 累加立方
             }
         }
-        cout << sum1 << ' ' << sum2 << endl;
+        cout << sum1 << ' ' << sum2 << endl; // 输出两个和
     }
 
     return 0;
