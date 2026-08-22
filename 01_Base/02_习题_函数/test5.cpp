@@ -47,6 +47,5 @@ int main()
             cout << "Sorry" << endl;
         }
     }
-
     return 0;
 }
